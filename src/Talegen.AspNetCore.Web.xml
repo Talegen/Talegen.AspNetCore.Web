@@ -1,0 +1,723 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Talegen.AspNetCore.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Talegen.AspNetCore.Web.Bindings.BindingExtensions">
+             <summary>
+             This class contains the binding extension to add our binding overrides during startup.
+             </summary>
+             <remarks>
+             The single extension method, AddBindingOverrides, is called when initializing a new Web Application within the
+             <code>
+            services.AddControllers(options =&gt;
+            {
+            options.AddBindingOverrides();
+            })
+             </code>
+             </remarks>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Bindings.BindingExtensions.AddBindingOverrides(Microsoft.AspNetCore.Mvc.MvcOptions)">
+            <summary>
+            This method is used to add the custom model binding handlers to override the built-in inflexible binders.
+            </summary>
+            <param name="options">Contains the MVC options to update.</param>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Bindings.CustomBinderLoggingExtensions">
+            <summary>
+            Contains logging extensions for logging binding event information.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Bindings.CustomBinderLoggingExtensions.FoundNoValueInRequestAction">
+            <summary>
+            Contains the no value in request action.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Bindings.CustomBinderLoggingExtensions.FoundNoValueForPropertyInRequestAction">
+            <summary>
+            Contains the no value in property action.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Bindings.CustomBinderLoggingExtensions.FoundNoValueForParameterInRequestAction">
+            <summary>
+            Contains the no value in parameter action.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Bindings.CustomBinderLoggingExtensions.DoneAttemptingToBindModelAction">
+            <summary>
+            Contains the done binding attempt action.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Bindings.CustomBinderLoggingExtensions.DoneAttemptingToBindParameterModelAction">
+            <summary>
+            Contains the done binding parameter action.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Bindings.CustomBinderLoggingExtensions.DoneAttemptingToBindPropertyModelAction">
+            <summary>
+            Contains the done binding property action.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Bindings.CustomBinderLoggingExtensions.AttemptingToBindModelAction">
+            <summary>
+            Contains the attempt to bind model action.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Bindings.CustomBinderLoggingExtensions.AttemptingToBindPropertyModelAction">
+            <summary>
+            Contains the attempt to bind property model action.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Bindings.CustomBinderLoggingExtensions.AttemptingToBindParameterModelAction">
+            <summary>
+            Contains the attempt to bind parameter model action.
+            </summary>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Bindings.CustomBinderLoggingExtensions.FoundNoValueInRequest(Microsoft.Extensions.Logging.ILogger,Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext)">
+            <summary>
+            This method is called to log no value in model binding request.
+            </summary>
+            <param name="logger">Contains the logger.</param>
+            <param name="bindingContext">Contains the binding context.</param>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Bindings.CustomBinderLoggingExtensions.AttemptingToBindModel(Microsoft.Extensions.Logging.ILogger,Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext)">
+            <summary>
+            This method is called to log attempting binding model request.
+            </summary>
+            <param name="logger">Contains the logger.</param>
+            <param name="bindingContext">Contains the binding context.</param>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Bindings.CustomBinderLoggingExtensions.DoneAttemptingToBindModel(Microsoft.Extensions.Logging.ILogger,Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext)">
+            <summary>
+            This method is called to log done attempting binding model request.
+            </summary>
+            <param name="logger">Contains the logger.</param>
+            <param name="bindingContext">Contains the binding context.</param>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Bindings.CustomSimpleTypeModelBinder">
+            <summary>
+            This class implements a custom binder for simple types that is less aggressive than .NET core binder and mimics original binder where default values are
+            returned for empty parameters
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Bindings.CustomSimpleTypeModelBinder.typeConverter">
+            <summary>
+            Contains the fallback type converter
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Bindings.CustomSimpleTypeModelBinder.logger">
+            <summary>
+            Contains the logger
+            </summary>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Bindings.CustomSimpleTypeModelBinder.#ctor(System.Type,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Talegen.AspNetCore.Web.Bindings.CustomSimpleTypeModelBinder" /> class.
+            </summary>
+            <param name="type">The type to create binder for.</param>
+            <param name="loggerFactory">The <see cref="T:Microsoft.Extensions.Logging.ILoggerFactory" />.</param>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Bindings.CustomSimpleTypeModelBinder.BindModelAsync(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext)">
+            <summary>
+            This call is made to execute the binding.
+            </summary>
+            <param name="bindingContext">Contains the model binding context.</param>
+            <returns>Returns the parsed long using TryParse instead of the harsher</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Bindings.CustomSimpleTypeModelBinder.CheckModel(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext,Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderResult,System.Object)">
+            <summary>
+            This method is used to check the model and set the binding context result.
+            </summary>
+            <param name="bindingContext">Contains the binding context result.</param>
+            <param name="valueProviderResult">Contains the value provider result.</param>
+            <param name="model">Contains the converted value model result.</param>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Bindings.CustomSimpleTypeModelBinderProvider">
+            <summary>
+            This class is a custom implementation of the simple type model binder.
+            </summary>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Bindings.CustomSimpleTypeModelBinderProvider.GetBinder(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderProviderContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Configuration.ApplicationInsightSettings">
+            <summary>
+            This class contains a common class for storing application insight settings.
+            </summary>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Configuration.ApplicationInsightSettings.InstrumentationKey">
+            <summary>
+            Gets or sets the instrumentation key
+            </summary>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Configuration.ApplicationInsightSettings.ConnectionString">
+            <summary>
+            Gets or sets the connection string.
+            </summary>
+            <value>The connection string.</value>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Configuration.ApplicationInsightSettings.Tags">
+            <summary>
+            Gets or sets the related tags
+            </summary>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Configuration.BackchannelClientSettingsBase">
+            <summary>
+            This abstract class defines a minimum set of configuration settings for a client credential OAuth verified backchannel API client.
+            </summary>
+            <remarks>The class can be inherited and used for a variety of client configurations, including but not limited to, an SCIM client.</remarks>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Configuration.BackchannelClientSettingsBase.Enabled">
+            <summary>
+            Gets or sets a value indicating whether the client functionality is enabled.
+            </summary>
+            <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Configuration.BackchannelClientSettingsBase.ClientId">
+            <summary>
+            Gets or sets the client identifier.
+            </summary>
+            <value>The client identifier.</value>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Configuration.BackchannelClientSettingsBase.ResourceUri">
+            <summary>
+            Gets or sets the resource URI.
+            </summary>
+            <value>The resource URI.</value>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Configuration.BackchannelClientSettingsBase.Secret">
+            <summary>
+            Gets or sets the secret.
+            </summary>
+            <value>The secret.</value>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Configuration.BackplaneType">
+            <summary>
+            Contains an enumerated list of SignalR backplane types
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Configuration.BackplaneType.None">
+            <summary>
+            No backplane connection shall be attempted.
+            </summary>
+            <remarks>Typically used for single instances of the application.</remarks>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Configuration.BackplaneType.Redis">
+            <summary>
+            A Redis pub/sub server shall be used as backplane for web-farm and Azure scaled application instances.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Configuration.BackplaneType.Azure">
+            <summary>
+            An Azure SignalR Service shall be used for SignalR communication.
+            </summary>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Configuration.NotificationSettings">
+            <summary>
+            Contains server settings related to notifications.
+            </summary>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Configuration.NotificationSettings.Enabled">
+            <summary>
+            Gets or sets a value indicating whether administrator has disabled SignalR notifications.
+            </summary>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Configuration.NotificationSettings.BackingType">
+            <summary>
+            Gets or sets the backplane notifications type.
+            </summary>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Configuration.NotificationSettings.AlternativeRedisConnectionConfig">
+            <summary>
+            Gets or sets an alternative Redis connection string for alternative backplane server different from the default Redis connection string.
+            </summary>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Configuration.NotificationSettings.BackplaneChannelPrefix">
+            <summary>
+            Gets or sets the server instance backplane channel prefix. This allows for a channel to be created for a specific application instance
+            environment/slot with unique name.
+            </summary>
+            <remarks>
+            Messages sent over the channel will continue to have sub-channel traffic based off of the requestor or server domain key for multi-tenant server instances.
+            </remarks>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Extensions.ImageExtensions">
+            <summary>
+            This class contains extensions to support image binary content within the application.
+            </summary>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ImageExtensions.Rescale(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            This extension method is used to rescale the specified bitmap into the width and height dimensions specified.
+            </summary>
+            <param name="sourceImage">Contains the source image to rescale.</param>
+            <param name="newWidth">Contains the new bitmap width size.</param>
+            <param name="newHeight">Contains the new bitmap height size.</param>
+            <returns>Returns a new rescaled bitmap of the source with specified width and height.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ImageExtensions.Thumbnail(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            This extension method is used to properly rescale an image into a smaller thumbnail.
+            </summary>
+            <param name="sourceBitmap">Contains the source bitmap image to resize</param>
+            <param name="newWidth">Contains the new thumbnail image width.</param>
+            <param name="newHeight">Contains the new thumbnail image height.</param>
+            <returns>Returns a new <see cref="T:System.Drawing.Bitmap" /> image containing the scaled thumbnail image.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ImageExtensions.WriteThumbnail(System.IO.Stream,System.Drawing.Bitmap,System.Int32,System.Int32,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            This extension method is used to properly rescale an image into a smaller thumbnail and write to a specified stream.
+            </summary>
+            <param name="outputStream">Contains the stream where the new thumbnail image shall be written to.</param>
+            <param name="sourceBitmap">Contains the source bitmap image to resize</param>
+            <param name="newWidth">Contains the new thumbnail image width.</param>
+            <param name="newHeight">Contains the new thumbnail image height.</param>
+            <param name="outputFormat">Contains the thumbnail image format.</param>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ImageExtensions.CreateThumbnail(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method is used to create a thumbnail for a specified binary file content data.
+            </summary>
+            <param name="contents">Contains the binary image contents to convert to a thumbnail</param>
+            <param name="thumbnailImageWidth">Contains an optional thumbnail width in pixels.</param>
+            <param name="thumbnailImageHeight">Contains an optional thumbnail height in pixels.</param>
+            <returns>Returns the thumbnail image binary contents</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ImageExtensions.CreateThumbnail(System.IO.Stream,System.Int32,System.Int32)">
+            <summary>
+            This method is used to create a thumbnail for a specified binary file stream data.
+            </summary>
+            <param name="fileStream">Contains the file stream for the binary component image data.</param>
+            <param name="thumbnailImageWidth">Contains an optional thumbnail width in pixels.</param>
+            <param name="thumbnailImageHeight">Contains an optional thumbnail height in pixels.</param>
+            <returns>Returns a byte array.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ImageExtensions.ToByteArray(System.Drawing.Bitmap)">
+            <summary>
+            This method is used to convert a Bitmap image object to an array of bytes.
+            </summary>
+            <param name="image">Contains the bitmap image object to convert.</param>
+            <returns>Returns a byte array representing the image bitmap.</returns>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Helpers.Internal.PasswordDictionary">
+            <summary>
+            This class represents a password complexity lookup database of known passwords
+            </summary>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.Internal.PasswordDictionary.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Talegen.AspNetCore.Web.Helpers.Internal.PasswordDictionary" /> class.
+            </summary>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Helpers.Internal.SimilarityMap">
+            <summary>
+            This class represents a dictionary of similar characters used for canonicalization of words.
+            </summary>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.Internal.SimilarityMap.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Talegen.AspNetCore.Web.Helpers.Internal.SimilarityMap" /> class.
+            </summary>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Helpers.PasswordComplexityLevel">
+            <summary>
+            Contains an enumerated list of available password complexity levels.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordComplexityLevel.None">
+            <summary>
+            No complexity level.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordComplexityLevel.Low">
+            <summary>
+            Low complexity.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordComplexityLevel.Medium">
+            <summary>
+            Medium complexity.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordComplexityLevel.High">
+            <summary>
+            High complexity.
+            </summary>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Helpers.CanonicalizationType">
+            <summary>
+            Contains an enumerated list of canonicalization types.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.CanonicalizationType.Everything">
+            <summary>
+            Canonicalize everything.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.CanonicalizationType.LettersOnly">
+            <summary>
+            Canonicalize letters only.
+            </summary>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Helpers.PasswordCharType">
+            <summary>
+            Contains an enumeration of password character types.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordCharType.UpperLetter">
+            <summary>
+            Upper-case characters.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordCharType.LowerLetter">
+            <summary>
+            Lower-case characters.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordCharType.Numeric">
+            <summary>
+            Numeric 0-9 characters.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordCharType.Special">
+            <summary>
+            Contains all special characters.
+            </summary>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Helpers.PasswordHelper">
+            <summary>
+            This class offers methods used for password format validation, complexity calculation, and generation.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordHelper.PasswordCharactersLowerCase">
+            <summary>
+            Contains the available lower-case characters
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordHelper.PasswordCharactersUpperCase">
+            <summary>
+            Contains the available upper-case characters
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordHelper.PasswordCharactersNumeric">
+            <summary>
+            Contains the available numeric characters
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordHelper.PasswordCharactersSpecial">
+            <summary>
+            Contains the available special characters
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordHelper.LowerGroupIndex">
+            <summary>
+            Contains the lower-case character array group index
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordHelper.UpperGroupIndex">
+            <summary>
+            Contains the upper-case character array group index
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordHelper.NumericGroupIndex">
+            <summary>
+            Contains the numeric character array group index
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordHelper.SpecialGroupIndex">
+            <summary>
+            Contains the special character array group index
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordHelper.dictionary">
+            <summary>
+            Contains an instance of the password lookup dictionary
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Helpers.PasswordHelper.similarityMap">
+            <summary>
+            Contains an instance of character similarity map
+            </summary>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Talegen.AspNetCore.Web.Helpers.PasswordHelper" /> class.
+            </summary>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.#ctor(Talegen.AspNetCore.Web.Helpers.PasswordHelperOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Talegen.AspNetCore.Web.Helpers.PasswordHelper" /> class.
+            </summary>
+            <param name="options">The options.</param>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Helpers.PasswordHelper.Options">
+            <summary>
+            Gets the options.
+            </summary>
+            <value>The options.</value>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.MeetsLengthStandards(System.String)">
+            <summary>
+            This method is used to determine if a password meets the settings length standards
+            </summary>
+            <param name="password">Contains the password to validate</param>
+            <returns>Returns true if the standards were met</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.MeetsLengthStandards(System.String,System.Int32,System.Int32)">
+            <summary>
+            This method is used to determine if a password meets the settings length standards
+            </summary>
+            <param name="password">Contains the password to validate</param>
+            <param name="minimumLength">Contains the minimum number of characters</param>
+            <param name="maximumLength">Contains the maximum number of characters</param>
+            <returns>Returns true if the standards were met</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.MeetsComplexityStandards(System.String)">
+            <summary>
+            This method is used to determine if a password meets the settings complexity standards
+            </summary>
+            <param name="password">Contains the password to validate</param>
+            <returns>Returns true if the standards were met</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.MeetsComplexityStandards(System.String,Talegen.AspNetCore.Web.Helpers.PasswordComplexityLevel)">
+            <summary>
+            This method is used to determine if a password meets the settings complexity standards
+            </summary>
+            <param name="password">Contains the password to validate</param>
+            <param name="minimumComplexity">Contains the minimum complexity to meet</param>
+            <returns>Returns true if the standards were met</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.MeetsFormatStandards(System.String)">
+            <summary>
+            This method is used to determine if a password meets all the settings format standards
+            </summary>
+            <param name="password">Contains the password to validate</param>
+            <returns>Returns true if the standards were met</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.MeetsFormatStandards(System.String,System.Int32,System.Int32,System.Int32,System.Int32,Talegen.AspNetCore.Web.Helpers.PasswordComplexityLevel,System.Int32,System.Int32)">
+            <summary>
+            This method is used to determine if a password meets all the settings format standards
+            </summary>
+            <param name="password">Contains the password to validate</param>
+            <param name="lowerMinimum">The minimum number of lower-case letters</param>
+            <param name="upperMinimum">The minimum number of upper-case letters</param>
+            <param name="numericMinimum">The minimum number of numeric characters</param>
+            <param name="specialMinimum">The minimum number of special characters</param>
+            <param name="minimumComplexity">The minimum password complexity</param>
+            <param name="minimumLength">The minimum overall length</param>
+            <param name="maximumLength">The maximum overall length</param>
+            <returns>Returns true if the standards were met</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.CalculateComplexity(System.String)">
+            <summary>
+            This method is used to calculate the complexity of the password specified
+            </summary>
+            <param name="password">Contains the password text to evaluate</param>
+            <returns>Returns the calculated password complexity level</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.GeneratePassword">
+            <summary>
+            This method returns a randomly generated password based on specific criteria in settings
+            </summary>
+            <returns>Returns the random text</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.GeneratePassword(System.Int32,System.Int32,System.Int32,System.Int32,Talegen.AspNetCore.Web.Helpers.PasswordComplexityLevel,System.Int32,System.Int32)">
+            <summary>
+            This method returns a randomly generated password based on specific criteria in settings
+            </summary>
+            <param name="lowerCount">The minimum number of lower-case letters</param>
+            <param name="upperCount">The minimum number of upper-case letters</param>
+            <param name="numericCount">The minimum number of numeric characters</param>
+            <param name="specialCount">The minimum number of special characters</param>
+            <param name="minimumComplexity">The minimum password complexity</param>
+            <param name="minimumLength">The minimum overall length</param>
+            <param name="maximumLength">The maximum overall length</param>
+            <returns>Returns the random text</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.AvailablePosition(System.Char[]@,System.Random)">
+            <summary>
+            This method is used to get a random position within the password character array
+            </summary>
+            <param name="password">The password array to look within</param>
+            <param name="random">The random number generator</param>
+            <returns>Returns a randomly selected available character space within the password array</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.RandomCharacter(System.Char[],System.Random)">
+            <summary>
+            This method is used to select a random character from the specified source array
+            </summary>
+            <param name="source">Contains the source array of characters to select from</param>
+            <param name="random">Contains the random number generator</param>
+            <returns>Returns a randomly selected character</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.CanonicalizeWord(System.String,Talegen.AspNetCore.Web.Helpers.CanonicalizationType)">
+            <summary>
+            This method converts a word into a canonicalized format
+            </summary>
+            <param name="word">Contains the word to canonicalize</param>
+            <param name="type">Contains the canonicalization method type</param>
+            <returns>Returns the canonicalized version of the word</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.FoundInDictionary(System.String)">
+            <summary>
+            This method is used to determine if a password was found in the password dictionary verbatim.
+            </summary>
+            <param name="password">Contains the password text to evaluate</param>
+            <returns>Returns true if the password text was found</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.SpansEnoughCharacterSets(System.String,System.Int32)">
+            <summary>
+            This method is used to determine if the password spans enough character set evaluations
+            </summary>
+            <param name="password">Contains the password text to evaluate</param>
+            <param name="minimumCharacterSetsToSpan">Contains the minimum number of character set evaluations to meet</param>
+            <returns>Returns true if the password text meets the minimum number of sets</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.IsCloseVariationOfAWordInDictionary(System.String,System.Double)">
+            <summary>
+            This method is used to determine if the password is within a certain ratio of like-ness to words in dictionary
+            </summary>
+            <param name="password">Contains the password text to evaluate</param>
+            <param name="minimumVariationRatio">Contains the minimum variation ratio to meet before returning true</param>
+            <returns>Returns true if the word is close to a dictionary word</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Helpers.PasswordHelper.IsCharOfType(System.Char,Talegen.AspNetCore.Web.Helpers.PasswordCharType)">
+            <summary>
+            This method is used to determine if a character is of a certain type
+            </summary>
+            <param name="testCharacter">Contains the character to test</param>
+            <param name="type">Contains the password character type</param>
+            <returns>Returns true if the character meets the type</returns>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Helpers.PasswordHelperOptions">
+            <summary>
+            This class defines the password requirement options for the <see cref="T:Talegen.AspNetCore.Web.Helpers.PasswordHelper" /> class.
+            </summary>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Helpers.PasswordHelperOptions.MinimumLength">
+            <summary>
+            Gets or sets the minimum length.
+            </summary>
+            <value>The minimum length.</value>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Helpers.PasswordHelperOptions.MaximumLength">
+            <summary>
+            Gets or sets the maximum length.
+            </summary>
+            <value>The maximum length.</value>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Helpers.PasswordHelperOptions.MinimumComplexityLevel">
+            <summary>
+            Gets or sets the minimum complexity.
+            </summary>
+            <value>The minimum complexity.</value>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Helpers.PasswordHelperOptions.RequiredLowerCaseCount">
+            <summary>
+            Gets or sets the required lower case count.
+            </summary>
+            <value>The required lower case count.</value>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Helpers.PasswordHelperOptions.RequiredUpperCaseCount">
+            <summary>
+            Gets or sets the required upper case count.
+            </summary>
+            <value>The required upper case count.</value>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Helpers.PasswordHelperOptions.RequiredNumericCount">
+            <summary>
+            Gets or sets the required numeric count.
+            </summary>
+            <value>The required numeric count.</value>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Helpers.PasswordHelperOptions.RequiredSpecialCount">
+            <summary>
+            Gets or sets the required special character count.
+            </summary>
+            <value>The required special character count.</value>
+        </member>
+        <member name="T:Talegen.AspNetCore.Web.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Talegen.AspNetCore.Web.Properties.Resources.ImageDefaultIcon">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions">
+            <summary>
+            This class contains extension methods in support of working with claim to model conversions.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetUserName(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the email.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the email claim value if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetUserId(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the email.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the email claim value if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetEmail(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the email.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the email claim value if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetPhoneNumber(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the phone number.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetGivenName(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the given name claim value.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetFamilyName(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the family name claim value.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetTimeZone(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the time zone.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetLocale(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the locale.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
