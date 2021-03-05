@@ -242,6 +242,67 @@
             Messages sent over the channel will continue to have sub-channel traffic based off of the requestor or server domain key for multi-tenant server instances.
             </remarks>
         </member>
+        <member name="T:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions">
+            <summary>
+            This class contains extension methods in support of working with claim to model conversions.
+            </summary>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetUserName(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the email.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the email claim value if found.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetUserId(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the email.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the email claim value if found.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetEmail(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the email.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the email claim value if found.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetPhoneNumber(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the phone number.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetGivenName(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the given name claim value.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetFamilyName(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the family name claim value.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetTimeZone(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the time zone.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetLocale(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Gets the locale.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns></returns>
+        </member>
         <member name="T:Talegen.AspNetCore.Web.Extensions.ImageExtensions">
             <summary>
             This class contains extensions to support image binary content within the application.
@@ -657,67 +718,6 @@
             <summary>
               Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
-        </member>
-        <member name="T:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions">
-            <summary>
-            This class contains extension methods in support of working with claim to model conversions.
-            </summary>
-        </member>
-        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetUserName(System.Security.Claims.ClaimsPrincipal)">
-            <summary>
-            Gets the email.
-            </summary>
-            <param name="principal">The principal.</param>
-            <returns>Returns the email claim value if found.</returns>
-        </member>
-        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetUserId(System.Security.Claims.ClaimsPrincipal)">
-            <summary>
-            Gets the email.
-            </summary>
-            <param name="principal">The principal.</param>
-            <returns>Returns the email claim value if found.</returns>
-        </member>
-        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetEmail(System.Security.Claims.ClaimsPrincipal)">
-            <summary>
-            Gets the email.
-            </summary>
-            <param name="principal">The principal.</param>
-            <returns>Returns the email claim value if found.</returns>
-        </member>
-        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetPhoneNumber(System.Security.Claims.ClaimsPrincipal)">
-            <summary>
-            Gets the phone number.
-            </summary>
-            <param name="principal">The principal.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetGivenName(System.Security.Claims.ClaimsPrincipal)">
-            <summary>
-            Gets the given name claim value.
-            </summary>
-            <param name="principal">The principal.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetFamilyName(System.Security.Claims.ClaimsPrincipal)">
-            <summary>
-            Gets the family name claim value.
-            </summary>
-            <param name="principal">The principal.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetTimeZone(System.Security.Claims.ClaimsPrincipal)">
-            <summary>
-            Gets the time zone.
-            </summary>
-            <param name="principal">The principal.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Bastille.Id.Core.Extensions.ClaimsPrincipalExtensions.GetLocale(System.Security.Claims.ClaimsPrincipal)">
-            <summary>
-            Gets the locale.
-            </summary>
-            <param name="principal">The principal.</param>
-            <returns></returns>
         </member>
     </members>
 </doc>
