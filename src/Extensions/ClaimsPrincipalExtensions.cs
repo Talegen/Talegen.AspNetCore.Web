@@ -14,7 +14,7 @@
  *
 */
 
-namespace Bastille.Id.Core.Extensions
+namespace Talegen.AspNetCore.Web.Extensions
 {
     using System.Security.Claims;
     using IdentityModel;
