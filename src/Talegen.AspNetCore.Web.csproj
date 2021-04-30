@@ -11,9 +11,9 @@
     <RepositoryUrl>https://github.com/talegen/Talegen.AspNetCore.Web</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>aspnetcore</PackageTags>
-    <PackageReleaseNotes>Initial commit</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixing bugs with Claim Extensions not returning values. Fixed docs and renamed extensions for breaking change.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
     <PackageIcon>logo.png</PackageIcon>
     <ApplicationIcon>Assets\logo.ico</ApplicationIcon>
   </PropertyGroup>

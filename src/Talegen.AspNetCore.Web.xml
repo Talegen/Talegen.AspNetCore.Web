@@ -247,61 +247,93 @@
             This class contains extension methods in support of working with claim to model conversions.
             </summary>
         </member>
-        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetUserName(System.Security.Claims.ClaimsPrincipal)">
+        <member name="F:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.TalegenMobileClaimType">
             <summary>
-            Gets the email.
+            Contains the mobile claim type.
+            </summary>
+        </member>
+        <member name="F:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.TalegenClientBackchannelClaimType">
+            <summary>
+            Contains the backchannel claim type.
+            </summary>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.UserName(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            This extension method gets the principal's user name.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the user name claim value if found.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.SubjectId(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            This extension method gets the principal's subject identity value.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the subject identity claim value if found.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.Email(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            This extension method gets the principal's email claim value.
             </summary>
             <param name="principal">The principal.</param>
             <returns>Returns the email claim value if found.</returns>
         </member>
-        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetUserId(System.Security.Claims.ClaimsPrincipal)">
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.HomePhoneNumber(System.Security.Claims.ClaimsPrincipal)">
             <summary>
-            Gets the email.
+            This extension method gets the principal's phone number claim value.
             </summary>
             <param name="principal">The principal.</param>
-            <returns>Returns the email claim value if found.</returns>
+            <returns>Returns the phone number claim value if found.</returns>
         </member>
-        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetEmail(System.Security.Claims.ClaimsPrincipal)">
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.MobileNumber(System.Security.Claims.ClaimsPrincipal,System.Boolean)">
             <summary>
-            Gets the email.
+            This extension method gets the principal's mobile phone number claim value.
             </summary>
             <param name="principal">The principal.</param>
-            <returns>Returns the email claim value if found.</returns>
+            <param name="useMobileClaimType">Contains a value indicating whether the "mobile" claim type shall be used.</param>
+            <returns>Returns the phone number claim value if found.</returns>
         </member>
-        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetPhoneNumber(System.Security.Claims.ClaimsPrincipal)">
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GivenName(System.Security.Claims.ClaimsPrincipal)">
             <summary>
-            Gets the phone number.
+            This extension method gets the principal's given (first) name claim value.
             </summary>
             <param name="principal">The principal.</param>
-            <returns></returns>
+            <returns>Returns the given name claim value if found.</returns>
         </member>
-        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetGivenName(System.Security.Claims.ClaimsPrincipal)">
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.FamilyName(System.Security.Claims.ClaimsPrincipal)">
             <summary>
-            Gets the given name claim value.
+            This extension method gets the principal's family (last) name claim value.
             </summary>
             <param name="principal">The principal.</param>
-            <returns></returns>
+            <returns>Returns the family name claim value if found.</returns>
         </member>
-        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetFamilyName(System.Security.Claims.ClaimsPrincipal)">
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.TimeZone(System.Security.Claims.ClaimsPrincipal)">
             <summary>
-            Gets the family name claim value.
+            This extension method gets the principal's time zone claim value.
             </summary>
             <param name="principal">The principal.</param>
-            <returns></returns>
+            <returns>Returns the time zone claim value if found.</returns>
         </member>
-        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetTimeZone(System.Security.Claims.ClaimsPrincipal)">
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.Locale(System.Security.Claims.ClaimsPrincipal)">
             <summary>
-            Gets the time zone.
+            This extension method gets the principal's locale claim value.
             </summary>
             <param name="principal">The principal.</param>
-            <returns></returns>
+            <returns>Returns the locale claim value if found.</returns>
         </member>
-        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.GetLocale(System.Security.Claims.ClaimsPrincipal)">
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.IsBackchannel(System.Security.Claims.ClaimsPrincipal)">
             <summary>
-            Gets the locale.
+            This extension method gets a value indicating whether this instance is backchannel.
             </summary>
             <param name="principal">The principal.</param>
-            <returns></returns>
+            <returns><c>true</c> if the specified principal is backchannel; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.FullName(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            This method the last name of the current user.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the user name.</returns>
         </member>
         <member name="T:Talegen.AspNetCore.Web.Extensions.ImageExtensions">
             <summary>
