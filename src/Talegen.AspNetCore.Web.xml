@@ -285,7 +285,7 @@
             <param name="principal">The principal.</param>
             <returns>Returns the phone number claim value if found.</returns>
         </member>
-        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.MobileNumber(System.Security.Claims.ClaimsPrincipal,System.Boolean)">
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.MobilePhoneNumber(System.Security.Claims.ClaimsPrincipal,System.Boolean)">
             <summary>
             This extension method gets the principal's mobile phone number claim value.
             </summary>
@@ -320,6 +320,49 @@
             </summary>
             <param name="principal">The principal.</param>
             <returns>Returns the locale claim value if found.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.SessionId(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            This extension method gets the principal's locale claim value.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the locale claim value if found.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.Address(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            This extension method gets the principal's street address claim value.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">principal</exception>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.Gender(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            This extension method gets the principal's gender claim value.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the gender claim value if found.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.Birthday(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            This extension method gets the principal's birthday claim value.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the birthday claim value if found.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.Expiration(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            This extension method gets the principal's token expiration claim value.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the token expiration claim value if found.</returns>
+        </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.NotBefore(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            This extension method gets the principal's token valid not before claim value.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the token valid not before claim value if found.</returns>
         </member>
         <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.IsBackchannel(System.Security.Claims.ClaimsPrincipal)">
             <summary>

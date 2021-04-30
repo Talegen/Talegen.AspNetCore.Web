@@ -17,9 +17,13 @@
 namespace Talegen.AspNetCore.Web.Extensions
 {
     using System;
+    using System.Linq;
     using System.Security.Claims;
     using IdentityModel;
+    using Newtonsoft.Json;
     using Talegen.Common.Core.Extensions;
+    using Talegen.Common.Models.Contacts;
+    using Talegen.Common.Models.Extensions;
 
     /// <summary>
     /// This class contains extension methods in support of working with claim to model conversions.
@@ -107,7 +111,7 @@ namespace Talegen.AspNetCore.Web.Extensions
         /// <param name="principal">The principal.</param>
         /// <param name="useMobileClaimType">Contains a value indicating whether the "mobile" claim type shall be used.</param>
         /// <returns>Returns the phone number claim value if found.</returns>
-        public static string MobileNumber(this ClaimsPrincipal principal, bool useMobileClaimType = true)
+        public static string MobilePhoneNumber(this ClaimsPrincipal principal, bool useMobileClaimType = true)
         {
             if (principal == null)
             {
@@ -179,6 +183,108 @@ namespace Talegen.AspNetCore.Web.Extensions
 
             string result = principal.FindFirstValue(JwtClaimTypes.Locale) ?? string.Empty;
             return string.IsNullOrWhiteSpace(result) ? principal.FindFirstValue(ClaimTypes.Locality) ?? string.Empty : result;
+        }
+
+        /// <summary>
+        /// This extension method gets the principal's locale claim value.
+        /// </summary>
+        /// <param name="principal">The principal.</param>
+        /// <returns>Returns the locale claim value if found.</returns>
+        public static string SessionId(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+            {
+                throw new ArgumentNullException(nameof(principal));
+            }
+
+            return principal.FindFirstValue(JwtClaimTypes.SessionId) ?? string.Empty;
+        }
+
+        /// <summary>
+        /// This extension method gets the principal's street address claim value.
+        /// </summary>
+        /// <param name="principal">The principal.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">principal</exception>
+        public static Address Address(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+            {
+                throw new ArgumentNullException(nameof(principal));
+            }
+
+            Address address = null;
+            string result = principal.FindFirstValue(JwtClaimTypes.Address) ?? string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(result))
+            {
+                address = principal.Claims.FirstOrDefault(c => c.Type == JwtClaimTypes.Address)?.ToAddress();
+            }
+
+            return address;
+        }
+
+        /// <summary>
+        /// This extension method gets the principal's gender claim value.
+        /// </summary>
+        /// <param name="principal">The principal.</param>
+        /// <returns>Returns the gender claim value if found.</returns>
+        public static string Gender(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+            {
+                throw new ArgumentNullException(nameof(principal));
+            }
+
+            string result = principal.FindFirstValue(JwtClaimTypes.Gender) ?? string.Empty;
+            return string.IsNullOrWhiteSpace(result) ? principal.FindFirstValue(ClaimTypes.Gender) ?? string.Empty : result;
+        }
+
+        /// <summary>
+        /// This extension method gets the principal's birthday claim value.
+        /// </summary>
+        /// <param name="principal">The principal.</param>
+        /// <returns>Returns the birthday claim value if found.</returns>
+        public static string Birthday(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+            {
+                throw new ArgumentNullException(nameof(principal));
+            }
+
+            string result = principal.FindFirstValue(JwtClaimTypes.BirthDate) ?? string.Empty;
+            return string.IsNullOrWhiteSpace(result) ? principal.FindFirstValue(ClaimTypes.DateOfBirth) ?? string.Empty : result;
+        }
+
+        /// <summary>
+        /// This extension method gets the principal's token expiration claim value.
+        /// </summary>
+        /// <param name="principal">The principal.</param>
+        /// <returns>Returns the token expiration claim value if found.</returns>
+        public static string Expiration(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+            {
+                throw new ArgumentNullException(nameof(principal));
+            }
+
+            string result = principal.FindFirstValue(JwtClaimTypes.Expiration) ?? string.Empty;
+            return string.IsNullOrWhiteSpace(result) ? principal.FindFirstValue(ClaimTypes.Expiration) ?? string.Empty : result;
+        }
+
+        /// <summary>
+        /// This extension method gets the principal's token valid not before claim value.
+        /// </summary>
+        /// <param name="principal">The principal.</param>
+        /// <returns>Returns the token valid not before claim value if found.</returns>
+        public static string NotBefore(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+            {
+                throw new ArgumentNullException(nameof(principal));
+            }
+
+            return principal.FindFirstValue(JwtClaimTypes.NotBefore) ?? string.Empty;
         }
 
         /// <summary>
