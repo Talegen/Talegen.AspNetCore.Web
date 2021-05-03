@@ -90,6 +90,21 @@ namespace Talegen.AspNetCore.Web.Extensions
         }
 
         /// <summary>
+        /// This extension method gets the principal's picture claim value.
+        /// </summary>
+        /// <param name="principal">The principal.</param>
+        /// <returns>Returns the picture claim value if found.</returns>
+        public static string Picture(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+            {
+                throw new ArgumentNullException(nameof(principal));
+            }
+
+            return principal.FindFirstValue(JwtClaimTypes.Picture) ?? string.Empty;
+        }
+
+        /// <summary>
         /// This extension method gets the principal's phone number claim value.
         /// </summary>
         /// <param name="principal">The principal.</param>

@@ -11,9 +11,9 @@
     <RepositoryUrl>https://github.com/talegen/Talegen.AspNetCore.Web</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>aspnetcore</PackageTags>
-    <PackageReleaseNotes>Updated packages including new models references.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added Picture claim extension method</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
     <PackageIcon>logo.png</PackageIcon>
     <ApplicationIcon>Assets\logo.ico</ApplicationIcon>
   </PropertyGroup>

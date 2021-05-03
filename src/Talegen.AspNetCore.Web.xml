@@ -278,6 +278,13 @@
             <param name="principal">The principal.</param>
             <returns>Returns the email claim value if found.</returns>
         </member>
+        <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.Picture(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            This extension method gets the principal's picture claim value.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>Returns the picture claim value if found.</returns>
+        </member>
         <member name="M:Talegen.AspNetCore.Web.Extensions.ClaimsPrincipalExtensions.HomePhoneNumber(System.Security.Claims.ClaimsPrincipal)">
             <summary>
             This extension method gets the principal's phone number claim value.
