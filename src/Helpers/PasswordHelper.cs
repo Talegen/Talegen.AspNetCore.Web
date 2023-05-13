@@ -352,8 +352,9 @@ namespace Talegen.AspNetCore.Web.Helpers
 
             byte[] randomBytes = new byte[4];
 
+            using var rng = RandomNumberGenerator.Create();
+
             // Generate 4 random bytes.
-            using RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
             rng.GetBytes(randomBytes);
 
             // Convert 4 bytes into a 32-bit integer value.
@@ -364,8 +365,8 @@ namespace Talegen.AspNetCore.Web.Helpers
 
             Random random = new Random(seed);
 
-            // Generate four repeating random numbers are postions of lower, upper, numeric and special characters By filling these positions with corresponding
-            // characters, we can ensure the password has atleast one character of those types
+            // Generate four repeating random numbers are positions of lower, upper, numeric and special characters By filling these positions with
+            // corresponding characters, we can ensure the password has at least one character of those types
             int lowerTotal = 0;
             int upperTotal = 0;
             int numericTotal = 0;
